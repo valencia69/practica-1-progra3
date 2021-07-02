@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
 
 class DescriptionPlace extends StatelessWidget{
+  //variable
+  String textoTitulo;
+  int cantidadEstrellas;
+  String textoDescripcion;
+
+  //metodo constructor
+  DescriptionPlace(this.textoTitulo,this.cantidadEstrellas,this.textoDescripcion);
+
   @override
   Widget build(BuildContext context) {
     final titulo = Container(
+      margin: EdgeInsets.only(
+        right: 20
+      ),
         child: Text(
-          "duwili ella"
+          textoTitulo,
+          style: TextStyle(
+            fontSize: 38,
+            fontWeight: FontWeight.bold
+          ),
         ),
       );
 
     final estrella = Container(
+      margin: EdgeInsets.only(
+          right: 5
+      ),
        child: Icon(
         Icons.star,
         color: Colors.amber,
@@ -17,21 +35,25 @@ class DescriptionPlace extends StatelessWidget{
     );
 
     final estrellaBorde = Container(
+      margin: EdgeInsets.only(
+          right: 5
+      ),
       child: Icon(
         Icons.star_border,
         color: Colors.black54,
       ),
     );
-
+//   fila estrellas
+    List<Container>estrellas = new List();
+    for(int i = 0; i < 5; i++){
+      if(i < cantidadEstrellas){
+        estrellas.add(estrella);
+      }else{
+        estrellas.add(estrellaBorde);
+      }
+    }
     final  filastrellas = Row(
-      children: <Widget>[
-         estrella,
-        estrella,
-        estrella,
-        estrella,
-        estrellaBorde
-
-      ],
+      children: estrellas,
     );
    final filatitulo = Row (
      children: <Widget>[
@@ -41,9 +63,15 @@ class DescriptionPlace extends StatelessWidget{
    );
 
     final descripcion = Container(
+      margin: EdgeInsets.only(
+        top: 10
+      ),
       child: Text(
+          textoDescripcion,
+        style: TextStyle(
+          color: Colors.black45
+      ),
 
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       ),
     );
 
